@@ -12,6 +12,7 @@ export default class Bookings extends BaseSchema {
 
   public async down () {
     this.schema.table(this.tableName, (table) => {
+      table.dropColumn('user_id')
     })
   }
 }

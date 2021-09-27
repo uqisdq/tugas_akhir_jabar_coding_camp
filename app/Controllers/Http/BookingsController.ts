@@ -5,7 +5,7 @@ import Booking from "App/Models/Booking";
 //import Field from "App/Models/Field";
 import Venue from "App/Models/Venue";
 import FormBookingValidator from "App/Validators/FormBookingValidator";
-import User from "App/models/User"
+import User from 'App/models/User';
 //import Bookings from 'Database/migrations/1632631321565_bookings';
 
 export default class BookingsController {
@@ -202,7 +202,7 @@ export default class BookingsController {
      *                  description:    If error, only God knows
      */
     public async schedule({auth,response}:HttpContextContract){
-        const id:number = auth.user?.id
+        const id:number = auth.user!.id
         const user = await User
             .query()
             .where('id',id)
