@@ -1,0 +1,17 @@
+Nama        : Ahmad Syauki Asshiddiqie
+Asal Daerah : Sumedang
+Deskripsi   :
+
+    Pada API ini, ada 3 API Tags, Authentication, Venues_CRUD dan Bookings_CRUD.
+    Authentication digunakan untuk daftar, OTP, dll. Dikarenakan ada permasalahan dengan SMTP,
+    fitur mailer saya nonaktifkan, dan OTP saya kirim lewat response. Tapi, secara syntax,
+    mailer yang saya buat insyaallah sudah benar, tapi memang dari awal ketika membuat tugas Wordpress,
+    saya selalu ada masalah dengan Certificate SSL - SMTP (pada saat tugas Wordpress, saya pakai Google API akhirnya)dll.
+
+    Venues_CRUD dibagi menjadi 2 peruntukan, untuk role Owner dan role semuanya. semua role bisa melakukan booking venue, namun
+    yang bisa melakukan CRUD data Venues hanyalah Owner.
+
+    Bookings_CRUD digunakan untuk melihat detail booking dan jadwal booking para pemain yang telah mendaftar, baik mendaftar pada
+    endpoint bookings maupun mendaftar pada endpoint join.
+
+link Deploy Heroku : https://venue-app-soki.herokuapp.com/docs/
