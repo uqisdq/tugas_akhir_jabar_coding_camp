@@ -5,8 +5,8 @@ import CreateVenueValidator from 'App/Validators/CreateVenueValidator'
 
 //models
 import Venue from 'App/Models/Venue'
-import Field from 'App/Models/Field'
-import Booking from 'App/Models/Booking'
+//import Field from 'App/Models/Field'
+//import Booking from 'App/Models/Booking'
 
 export default class VenuesController {
     /**
@@ -114,7 +114,7 @@ export default class VenuesController {
      *                  description:    If error, only God knows
      */
 
-    public async show({request,params,response}:HttpContextContract){
+    public async show({/*request,*/params,response}:HttpContextContract){
         let venues = await Venue
             .query()
             .where('id',params.id)

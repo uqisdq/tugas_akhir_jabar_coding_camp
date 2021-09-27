@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema} from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 import UserValidator from 'App/Validators/UserValidator'
-import Mail from '@ioc:Adonis/Addons/Mail'
+//import Mail from '@ioc:Adonis/Addons/Mail'
 import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class AuthController {
@@ -84,7 +84,7 @@ export default class AuthController {
 
             const payload = await request.validate({schema:userSchema})
             const token = await auth.use('api').attempt(email, password)
-            return response.ok({message:'login sukses', token})
+            return response.ok({message:'login sukses', token,payload})
         } catch (error) {
             if(error.guard){ //Error request
                 console.log(error.message)
