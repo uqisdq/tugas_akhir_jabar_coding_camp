@@ -5,6 +5,37 @@ import { BaseModel, belongsTo, column,BelongsTo,hasMany,HasMany } from '@ioc:Ado
 import User from './User'
 import Field from './Field'
 
+/** 
+*  @swagger
+*  definitions:
+*    VenuesPost:
+*      type: object
+*      properties:
+*        name:
+*          type: string
+*        address:
+*          type: string
+*        phone:
+*          type: integer     
+*      required:
+*        - name
+*        - address
+*        - phone
+*/
+
+/** 
+*  @swagger
+*  definitions:
+*    VenuesPut:
+*      type: object
+*      properties:
+*        name:
+*          type: string
+*        address:
+*          type: string
+*        phone:
+*          type: integer
+*/
 export default class Venue extends BaseModel {
   public static table = "venues"
   @column({ isPrimary: true })

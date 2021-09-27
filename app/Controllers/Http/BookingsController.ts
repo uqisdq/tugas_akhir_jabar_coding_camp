@@ -9,6 +9,37 @@ import User from "App/models/User"
 import Bookings from 'Database/migrations/1632631321565_bookings';
 
 export default class BookingsController {
+
+        /**
+     *  @swagger
+     *  /venues/{id}/bookings:
+     *      post:
+     *          security:
+     *              -   bearerAuth: []
+     *          parameters:
+     *              -   in: path
+     *                  name:   id
+     *                  required:   true
+     *                  schema:
+     *                      type:   integer
+     *                  description:    Venue_ID
+     *          tags:
+     *              -   Venues_CRUD
+     *          summary:    Create a Booking and play!
+     *          requestBody:
+     *              required:   true
+     *              content:
+     *                  application/x-www-form-urlencoded:
+     *                      schema:
+     *                          $ref:   '#definitions/BookingsPost'
+     *                      aplication/json:
+     *                          $ref:   '#definitions/BookingsPost'
+     *          responses:
+     *              '201':
+     *                  description:    Booking Success
+     *              '422':
+     *                  description:    Booking Failed
+     */
     public async store({request,response,params,auth}:HttpContextContract){
         const venue = await Venue.findByOrFail('id',params.venue_id)
         const user = auth.user!
@@ -25,6 +56,21 @@ export default class BookingsController {
         return response.created({status:'success',data:booking})
     }
 
+    /**
+     *  @swagger
+     *  /bookings:
+     *      get:
+     *          security:
+     *              -   bearerAuth: []
+     *          tags:
+     *              -   Bookings_CRUD
+     *          summary:    Get All Bookings
+     *          responses:
+     *              '201':
+     *                  description:    Success get Bookings
+     *              '422':
+     *                  description:    If error, only God knows
+     */
     public async index({response}:HttpContextContract){
         let bookings = await Booking.query()
         .select(['id','play_date_start','play_date_end','fieldId','venueId','userId'])
@@ -41,6 +87,28 @@ export default class BookingsController {
 
     }
 
+    /**
+     *  @swagger
+     *  /bookings/{id}/join:
+     *      put:
+     *          security:
+     *              -   bearerAuth: []
+     *          parameters:
+     *              -   in: path
+     *                  name:   id
+     *                  required:   true
+     *                  schema:
+     *                      type:   integer
+     *                  description:    Booking_ID
+     *          tags:
+     *              -   Bookings_CRUD
+     *          summary:    Join to your friend Booking!
+     *          responses:
+     *              '201':
+     *                  description:    Booking Success
+     *              '422':
+     *                  description:    Booking Failed
+     */
     public async join({response,auth,params}:HttpContextContract){
         const booking = await Booking.findOrFail(params.id)
         let user = auth.user!
@@ -54,6 +122,28 @@ export default class BookingsController {
         
     }
 
+        /**
+     *  @swagger
+     *  /bookings/{id}/unjoin:
+     *      put:
+     *          security:
+     *              -   bearerAuth: []
+     *          parameters:
+     *              -   in: path
+     *                  name:   id
+     *                  required:   true
+     *                  schema:
+     *                      type:   integer
+     *                  description:    Booking_ID
+     *          tags:
+     *              -   Bookings_CRUD
+     *          summary:    Unjoin to your friend Booking! Having a problem with your friend innit?
+     *          responses:
+     *              '201':
+     *                  description:    UnBooking Success
+     *              '422':
+     *                  description:    UnBooking Failed
+     */
     public async unjoin({params,response,auth}:HttpContextContract){
         const booking = await Booking.findOrFail(params.id)
         const user = auth.user!
@@ -62,7 +152,29 @@ export default class BookingsController {
         return response.ok({status:'success unjoin main', data:'success unjoin main'})
     }
 
-    public async show({params,response}:HttpContextContract){
+    /**
+     *  @swagger
+     *  /bookings/{id}:
+     *      get:
+     *          security:
+     *              -   bearerAuth: []
+     *          parameters:
+     *              -   in: path
+     *                  name:   id
+     *                  required:   true
+     *                  schema:
+     *                      type:   integer
+     *                  description:    Booking_ID
+     *          tags:
+     *              -   Bookings_CRUD
+     *          summary:    Get Booking by ID
+     *          responses:
+     *              '201':
+     *                  description:    Success get Booking
+     *              '422':
+     *                  description:    If error, only God knows
+     */
+     public async show({params,response}:HttpContextContract){
         const booking = await Booking
         .query()
         .where('id',params.id)
@@ -74,6 +186,21 @@ export default class BookingsController {
         return response.ok({status:'success',data:booking})
     }
 
+    /**
+     *  @swagger
+     *  /schedule:
+     *      get:
+     *          security:
+     *              -   bearerAuth: []
+     *          tags:
+     *              -   Bookings_CRUD
+     *          summary:    Get Your Scheduled Booking
+     *          responses:
+     *              '201':
+     *                  description:    Success get Bookings
+     *              '422':
+     *                  description:    If error, only God knows
+     */
     public async schedule({auth,response}:HttpContextContract){
         const id:number = auth.user?.id
         const user = await User

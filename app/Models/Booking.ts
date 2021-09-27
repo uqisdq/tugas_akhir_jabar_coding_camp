@@ -4,6 +4,23 @@ import Field from './Field'
 import User from './User'
 import Venue from './Venue'
 
+/** 
+*  @swagger
+*  definitions:
+*    BookingsPost:
+*      type: object
+*      properties:
+*        play_date_start:
+*          type: dateTime
+*        play_date_end:
+*          type: dateTime
+*        field_id:
+*          type: integer     
+*      required:
+*        - name
+*        - address
+*        - field_id
+*/
 export default class Booking extends BaseModel {
   public static table = "bookings"
 

@@ -13,6 +13,58 @@ import {
 import Venue from './Venue'
 import Booking from './Booking'
 
+/** 
+*  @swagger
+*  definitions:
+*    User:
+*      type: object
+*      properties:
+*        id:
+*          type: integer
+*        name:
+*          type: string
+*        email:
+*          type: string
+*        password:
+*          type: string
+*        role:
+*          type: string      
+*      required:
+*        - name
+*        - email
+*        - password
+*/
+
+/** 
+*  @swagger
+*  definitions:
+*    UserLogin:
+*      type: object
+*      properties:
+*        email:
+*          type: string
+*        password:
+*          type: string     
+*      required:
+*        - email
+*        - password
+*/
+
+/** 
+*  @swagger
+*  definitions:
+*    UserVerif:
+*      type: object
+*      properties:
+*        otp_code:
+*          type: integer
+*        email:
+*          type: string     
+*      required:
+*        - otp_code
+*        - email
+*/
+
 export default class User extends BaseModel {
   public static table = "users"
   @column({ isPrimary: true })
