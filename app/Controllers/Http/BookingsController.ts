@@ -5,7 +5,7 @@ import Booking from "App/Models/Booking";
 //import Field from "App/Models/Field";
 import Venue from "App/Models/Venue";
 import FormBookingValidator from "App/Validators/FormBookingValidator";
-import User from 'App/models/User';
+import User from "App/Models/User";
 //import Bookings from 'Database/migrations/1632631321565_bookings';
 
 export default class BookingsController {
