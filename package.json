@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node ace build --prod",
-    "start": "node ./build/server.js"
+    "start": "ENV_SILENT=true node build/server.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.7",
