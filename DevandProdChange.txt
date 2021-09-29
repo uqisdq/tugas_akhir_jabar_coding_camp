@@ -1,2 +1,5 @@
     "start": "node ace serve --watch",
     "start:prod": "node ./build/server.js",
+
+    Taro di procfile:
+    web: npm run start:prod
