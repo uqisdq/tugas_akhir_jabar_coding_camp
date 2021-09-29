@@ -1,0 +1,2 @@
+    "start": "node ace serve --watch",
+    "start:prod": "node ./build/server.js",
